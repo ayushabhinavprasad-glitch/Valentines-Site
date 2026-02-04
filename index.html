@@ -123,7 +123,7 @@
     ];
     let lineIndex = 0;
 
-    // NO button now stays in place, shows romantic lines when clicked
+    // NO button stays in place and shows romantic lines when clicked
     noBtn.addEventListener('click', () => {
         messages.textContent = romanticLines[lineIndex] || romanticLines[romanticLines.length-1];
         lineIndex = Math.min(lineIndex + 1, romanticLines.length - 1);
