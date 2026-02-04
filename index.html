@@ -1,97 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Be My Valentine?</title>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-        height: 100vh;
-        overflow: hidden;
-    }
-    h1 {
-        font-family: 'Pacifico', cursive;
-        font-size: 2.5em;
-        color: #fff;
-        margin-bottom: 20px;
-    }
-    .buttons {
-        display: flex;
-        gap: 20px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    button {
-        padding: 12px 25px;
-        font-size: 1em;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: transform 0.2s, background 0.3s;
-        font-weight: 600;
-        color: #fff;
-        background: #ff6b81;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        position: relative;
-        z-index: 2;
-    }
-    button:hover {
-        transform: scale(1.1);
-        background: #ff4757;
-    }
-    .messages {
-        font-size: 1em;
-        color: #fff;
-        margin-top: 10px;
-        min-height: 50px;
-        padding: 0 10px;
-    }
-    .confetti, .floating-hearts {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        overflow: hidden;
-        top: 0;
-        left: 0;
-    }
-    .heart {
-        position: absolute;
-        font-size: 2em;
-        animation: float 3s ease-out forwards;
-    }
-    @keyframes float {
-        0% {transform: translateY(0) scale(1);}
-        100% {transform: translateY(-600px) scale(0);}
-    }
-    #romanticGif {
-        display: none;
-        width: 250px;
-        max-width: 80%;
-        margin-top: 20px;
-        border-radius: 15px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.8em;
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        .buttons {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+        }
+        button {
+            padding: 14px 35px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            color: #fff;
+            background: #ff6b81;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+            position: relative;
+            z-index: 2;
+        }
+        button:hover {
+            transform: scale(1.12);
+            background: #ff4757;
+        }
+        #noBtn {
+            transition: all 0.25s ease;
+        }
+        .messages {
+            font-size: 1.15em;
+            color: #fff;
+            margin-top: 20px;
+            min-height: 120px;
+            padding: 0 20px;
+            max-width: 90%;
+            line-height: 1.5;
+        }
+        .message-line {
+            margin: 8px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .confetti, .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            top: 0; left: 0;
+        }
+        .heart {
+            position: absolute;
+            font-size: 2em;
+            animation: float 3.5s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes float {
+            0%   { transform: translateY(0) scale(1);   opacity: 1; }
+            100% { transform: translateY(-700px) scale(0.3); opacity: 0; }
+        }
+        #romanticGif {
+            display: none;
+            width: 280px;
+            max-width: 85%;
+            margin-top: 25px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+        }
+    </style>
 </head>
 <body>
 
 <h1>Will you be my Valentine? 💖</h1>
+
 <div class="buttons">
     <button id="yesBtn">Yes</button>
     <button id="noBtn">No</button>
 </div>
+
 <div class="messages" id="messages"></div>
 
 <img id="romanticGif" src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUycTcybWFpNmRsaHFmZWU0bGJobzUxYXowcHNzeTM4N212cTFmMzg4OSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/qFmdpUKAFZ6rMobzzu/200.gif" alt="Romantic GIF">
@@ -99,69 +118,117 @@
 <div class="confetti" id="confetti"></div>
 <div class="floating-hearts" id="floatingHearts"></div>
 
-<audio id="music" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
-
 <script>
     const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const messages = document.getElementById('messages');
+    const noBtn   = document.getElementById('noBtn');
+    const messagesDiv = document.getElementById('messages');
     const confetti = document.getElementById('confetti');
     const floatingHearts = document.getElementById('floatingHearts');
     const romanticGif = document.getElementById('romanticGif');
-    const music = document.getElementById('music');
 
     const romanticLines = [
         "Think about all the smiles we’ve shared 💕",
         "I promise chocolates and hugs 🍫🤗",
-        "It would make me the happiest 😍",
+        "It would make me the happiest person alive 😍",
         "You're the sweetest thing in my life 💖",
         "Say yes and let's make this Valentine unforgettable 🌹",
-        "I can’t imagine my Valentine without you 💘",
-        "Please say yes, my heart is yours 💞"
+        "I can’t imagine celebrating without you 💘",
+        "Please say yes… my heart is already yours 💞",
+        "One yes = unlimited cuddles forever 🥰"
     ];
     let lineIndex = 0;
 
-    // NO button click shows romantic lines, button stays in place
-    noBtn.addEventListener('click', () => {
-        messages.textContent = romanticLines[lineIndex];
-        lineIndex = Math.min(lineIndex + 1, romanticLines.length - 1);
+    // ──────────────────────────────────────────────
+    // Make "No" button run away when mouse approaches
+    // ──────────────────────────────────────────────
+    noBtn.addEventListener('mouseover', (e) => {
+        const rect = noBtn.getBoundingClientRect();
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        // Distance from mouse to button center
+        const dx = mouseX - (rect.left + rect.width / 2);
+        const dy = mouseY - (rect.top + rect.height / 2);
+        const distance = Math.sqrt(dx*dx + dy*dy);
+
+        if (distance < 120) {   // trigger range
+            let newX = rect.left + (Math.random() * 240 - 120);
+            let newY = rect.top  + (Math.random() * 200 - 100);
+
+            // Keep inside screen
+            newX = Math.max(20, Math.min(window.innerWidth - rect.width - 20, newX));
+            newY = Math.max(100, Math.min(window.innerHeight - rect.height - 100, newY));
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top  = newY + 'px';
+            noBtn.style.transform = 'scale(1.05)';
+        }
     });
 
-    // YES button click shows GIF, hearts, and music
+    // Optional: also react on click (in case they manage to click it)
+    noBtn.addEventListener('click', () => {
+        showNextRomanticLine();
+        noBtn.textContent = "🥺 Nooo... really?";
+        setTimeout(() => { noBtn.textContent = "No"; }, 1800);
+    });
+
+    // YES → celebration
     yesBtn.addEventListener('click', () => {
-        messages.textContent = "Yay! You're my Valentine! 💕";
+        messagesDiv.innerHTML = '<div class="message-line">Yay! You said YES! 💕💍</div>' +
+                               '<div class="message-line">You just made me the happiest person alive! 🥰</div>';
+        
         yesBtn.style.display = 'none';
         noBtn.style.display = 'none';
         romanticGif.style.display = 'block';
-        startHearts();
-        music.play();
+        startHeartsAndConfetti();
+
+        // Optional: disable dodging after Yes
+        noBtn.style.pointerEvents = 'none';
     });
 
-    function startHearts() {
-        // Confetti hearts
+    function showNextRomanticLine() {
+        if (lineIndex >= romanticLines.length) lineIndex = 0;
+        const line = document.createElement('div');
+        line.className = 'message-line';
+        line.textContent = romanticLines[lineIndex];
+        messagesDiv.appendChild(line);
+        lineIndex++;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight; // auto-scroll if many lines
+    }
+
+    function startHeartsAndConfetti() {
+        // Fast confetti hearts
         setInterval(() => {
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            heart.textContent = '💖';
+            heart.textContent = ['💖','💝','💗','💞','✨'][Math.floor(Math.random()*5)];
             heart.style.left = Math.random() * window.innerWidth + 'px';
-            heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+            heart.style.fontSize = (18 + Math.random() * 40) + 'px';
+            heart.style.animationDuration = (2 + Math.random() * 2) + 's';
             confetti.appendChild(heart);
-            setTimeout(() => confetti.removeChild(heart), 3000);
-        }, 150);
+            setTimeout(() => heart.remove(), 4000);
+        }, 80);
 
-        // Floating hearts in background
+        // Gentle floating background hearts
         setInterval(() => {
             const fHeart = document.createElement('div');
             fHeart.classList.add('heart');
             fHeart.textContent = '❤️';
             fHeart.style.left = Math.random() * window.innerWidth + 'px';
-            fHeart.style.fontSize = (15 + Math.random() * 20) + 'px';
+            fHeart.style.fontSize = (12 + Math.random() * 24) + 'px';
+            fHeart.style.animationDuration = (4 + Math.random() * 5) + 's';
             floatingHearts.appendChild(fHeart);
-            setTimeout(() => floatingHearts.removeChild(fHeart), 5000);
-        }, 300);
+            setTimeout(() => fHeart.remove(), 9000);
+        }, 600);
     }
+
+    // Bonus: show first romantic line automatically after 6 seconds
+    setTimeout(() => {
+        if (messagesDiv.children.length === 0) {
+            showNextRomanticLine();
+        }
+    }, 6000);
 </script>
 
 </body>
