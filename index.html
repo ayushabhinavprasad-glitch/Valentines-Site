@@ -123,17 +123,18 @@
     ];
     let lineIndex = 0;
 
-    // NO button stays in place and shows romantic lines when clicked
+    // NO button click shows romantic lines, button stays in place
     noBtn.addEventListener('click', () => {
-        messages.textContent = romanticLines[lineIndex] || romanticLines[romanticLines.length-1];
+        messages.textContent = romanticLines[lineIndex];
         lineIndex = Math.min(lineIndex + 1, romanticLines.length - 1);
     });
 
+    // YES button click shows GIF, hearts, and music
     yesBtn.addEventListener('click', () => {
         messages.textContent = "Yay! You're my Valentine! 💕";
         yesBtn.style.display = 'none';
         noBtn.style.display = 'none';
-        romanticGif.style.display = 'block'; // show GIF
+        romanticGif.style.display = 'block';
         startHearts();
         music.play();
     });
